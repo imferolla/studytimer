@@ -6,6 +6,8 @@ import tkinter.font as tkFont
 
 dir_path = str(os.path.dirname(os.path.realpath(__file__))) + r"\noti.mp3"
 all_timers = [0, 0]
+setsDone = 0
+totalTime = 0
 
 def btn_callback():
 
@@ -45,10 +47,20 @@ def break_countdown(break_dur):
 
     global countdown_label
     global heading_label
+    global setsDone
+    global totalTime
+    global all_timers
     heading_label.config(text="Break Countdown")
 
     if break_dur <= 0:
         playsound(dir_path)
+        setsDone += 1
+        print(setsDone)
+        totalTime = totalTime + all_timers[0] + all_timers[1]
+        totalTime_text = "Total Time: " + str(totalTime) + " minutes"
+        setsText = "Total Sets: " + str(setsDone)
+        sets_label.config(text=setsText)
+        totalTime_label.config(text=totalTime_text)
         study_countdown(all_timers[0] * 60)
 
     else:
@@ -74,8 +86,11 @@ question_button = tk.Button(screen,text="Submit", command= btn_callback)
 question_button.place(x=125,y=0)
 countdown_label = tk.Label(screen, text="",font=countdown_font)
 heading_label = tk.Label(screen, text="",font=heading_font)
+sets_label = tk.Label(screen, text="",font=countdown_font)
+totalTime_label = tk.Label(screen, text="",font=countdown_font)
 
-
+sets_label.place(x=0, y=70)
+totalTime_label.place(x=200, y=70)
 countdown_label.place(x=160, y=40)
 
 
