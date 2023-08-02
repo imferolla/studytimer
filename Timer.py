@@ -55,7 +55,6 @@ def break_countdown(break_dur):
     if break_dur <= 0:
         playsound(dir_path)
         setsDone += 1
-        print(setsDone)
         totalTime = totalTime + all_timers[0] + all_timers[1]
         totalTime_text = "Total Time: " + str(totalTime) + " minutes"
         setsText = "Total Sets: " + str(setsDone)
